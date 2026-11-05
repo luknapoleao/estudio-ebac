@@ -29,10 +29,18 @@
 </head>
 <body>
   <div class="carregando" id="carregando"><div><b>EBAC <span style="color:#a78bcf;font-weight:400">×</span> <span style="display:inline-block;width:9px;height:9px;background:#eb1700"></span> Constructor</b><i></i>Carregando a agenda do estúdio…</div></div>
-  <iframe id="app" title="Agendar gravação · Estúdio EBAC" allow="clipboard-write"
-    src="https://script.google.com/macros/s/AKfycbxkSAc2HN1HhJSLAAqvge-SBvxe6vEDX757-BNIZRaAc_RFFgaA1gCB6c9AiwanXwYZ/exec"></iframe>
+  <iframe id="app" title="Agendar gravação · Estúdio EBAC" allow="clipboard-write"></iframe>
   <script>
-    document.getElementById('app').addEventListener('load', function () {
+    // Repassa os parâmetros do link (?p=meu&id=…&t=…) para o agendamento — assim "Gerenciar meu pedido"
+    // e os links de aprovação também abrem por este endereço.
+    var APP = 'https://script.google.com/macros/s/AKfycbxkSAc2HN1HhJSLAAqvge-SBvxe6vEDX757-BNIZRaAc_RFFgaA1gCB6c9AiwanXwYZ/exec';
+    var params = new URLSearchParams(location.search), permitidos = new URLSearchParams();
+    ['p', 'id', 'a', 't'].forEach(function (k) { if (params.get(k)) permitidos.set(k, params.get(k)); });
+    var app = document.getElementById('app');
+    app.src = APP + (permitidos.toString() ? '?' + permitidos.toString() : '');
+    if (params.get('p') === 'meu') document.title = 'Meu pedido · Estúdio EBAC';
+    if (params.get('p') === 'aprovar') document.title = 'Aprovar pedido · Estúdio EBAC';
+    app.addEventListener('load', function () {
       this.classList.add('pronto');
       document.getElementById('carregando').style.display = 'none';
     });
