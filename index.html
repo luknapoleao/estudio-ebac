@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agendar gravação · Estúdio EBAC</title>
+<meta name="description" content="Veja os dias livres do Estúdio EBAC e envie seu pedido de gravação.">
+<meta name="theme-color" content="#10001f">
+<link rel="icon" type="image/png" href="icone-ebac.png">
+<link rel="apple-touch-icon" href="icone-ebac.png">
+<!-- Prévia ao compartilhar no WhatsApp / Mattermost -->
+<meta property="og:title" content="Agendar gravação · Estúdio EBAC">
+<meta property="og:description" content="Veja os dias livres do estúdio e envie seu pedido em 1 minuto.">
+<meta property="og:image" content="https://luknapoleao.github.io/estudio-ebac/icone-ebac.png">
+<meta property="og:url" content="https://luknapoleao.github.io/estudio-ebac/">
+<meta property="og:type" content="website">
+<meta name="robots" content="noindex">
+<style>
+  html, body { margin: 0; height: 100%; background: #10001f; }
+  iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; background: #f6f5fa; opacity: 0; transition: opacity .25s; }
+  iframe.pronto { opacity: 1; }
+  .carregando { position: fixed; inset: 0; display: grid; place-items: center; color: #c9b6e6;
+    font: 600 14px Rubik, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; letter-spacing: 1px; }
+  .carregando b { display: block; color: #fff; font-size: 22px; letter-spacing: 1px; margin-bottom: 14px; text-align: center; }
+  .carregando i { display: block; width: 34px; height: 34px; margin: 0 auto 14px; border-radius: 50%;
+    border: 3px solid rgba(255,255,255,.15); border-top-color: #f0762b; animation: gira .8s linear infinite; }
+  @keyframes gira { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+  <div class="carregando" id="carregando"><div><b>EBAC <span style="color:#a78bcf;font-weight:400">×</span> <span style="display:inline-block;width:9px;height:9px;background:#eb1700"></span> Constructor</b><i></i>Carregando a agenda do estúdio…</div></div>
+  <iframe id="app" title="Agendar gravação · Estúdio EBAC" allow="clipboard-write"
+    src="https://script.google.com/macros/s/AKfycbxkSAc2HN1HhJSLAAqvge-SBvxe6vEDX757-BNIZRaAc_RFFgaA1gCB6c9AiwanXwYZ/exec"></iframe>
+  <script>
+    document.getElementById('app').addEventListener('load', function () {
+      this.classList.add('pronto');
+      document.getElementById('carregando').style.display = 'none';
+    });
+  </script>
+</body>
+</html>
